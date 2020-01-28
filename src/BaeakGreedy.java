@@ -1,7 +1,35 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
+
 public class BaeakGreedy {
+    public static void baek1049() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int result = 1000;
+        int[][] brandPrices = new int[m][2];
+
+        for (int i = 0; i < m; i++) {
+            brandPrices[i][0] = sc.nextInt();
+            brandPrices[i][1] = sc.nextInt();
+        }
+
+        for(int k = 0; k<m; k++){
+            int tempPrice = 0;
+            int onePrice = brandPrices[k][1] * n;
+            int packagePrice;
+            if(6>=n){
+                packagePrice = brandPrices[k][0];
+            }else{
+                packagePrice = (n/6 + 1) * brandPrices[k][0];
+            }
+            tempPrice = onePrice > packagePrice ? packagePrice : onePrice;
+            result = result > tempPrice ? tempPrice : result;
+        }
+        System.out.println(result);
+    }
+
     private static void baek2437() {
         int n = 7;
         int[] weights = {3, 1, 6, 2, 7, 30, 1};
